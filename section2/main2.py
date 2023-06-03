@@ -7,5 +7,6 @@
 
 a = float(123)
 print(type(a))
+
 print(80 + float("100.5"))
 print(str(80) + str(100))
