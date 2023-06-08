@@ -8,20 +8,21 @@
         # 행맨을 1회 그림
         # 행맨이 완성됐다면 종료(lose), 아니라면 유저 추측으로 다시 돌아감
 
-
-#Step 1 
-
-word_list = ["aardvark", "baboon", "camel"]
-
-#TODO-1 - Randomly choose a word from the word_list and assign it to a variable called chosen_word.
 import random
 
+word_list = ["aardvark", "baboon", "camel"]
 chosen_word = random.choice(word_list)
 
-#TODO-2 - Ask the user to guess a letter and assign their answer to a variable called guess. Make guess lowercase.
+blank_list = []
+
+while len(blank_list) < len(chosen_word):
+    blank_list.append("_")
+
+print(chosen_word)
+print(blank_list)
+
 guess = input("Guess a letter: ").lower()
 
-#TODO-3 - Check if the letter the user guessed (guess) is one of the letters in the chosen_word.
 for letter in chosen_word:
     if letter == guess:
         print("Right")
