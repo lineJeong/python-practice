@@ -28,11 +28,18 @@ for _ in range(word_length):
 print(chosen_word)
 print(display_list)
 
-guess = input("Guess a letter: ").lower()
+end_of_game = False
 
-for position in range(word_length):
-    letter = chosen_word[position]
-    if letter == guess:
-        display_list[position] = letter
+while not end_of_game:
+    guess = input("Guess a letter: ").lower()
 
-print(display_list)
+    for position in range(word_length):
+        letter = chosen_word[position]
+        if letter == guess:
+            display_list[position] = letter
+
+    print(display_list)
+
+    if "_" not in display_list:
+        end_of_game = True
+        print("You win")
