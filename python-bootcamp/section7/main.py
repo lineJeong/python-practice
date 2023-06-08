@@ -9,10 +9,11 @@
         # 행맨이 완성됐다면 종료(lose), 아니라면 유저 추측으로 다시 돌아감
 
 import random
-import hangman_art
-import hangman_words
+import os
+from hangman_art import stages, logo
+from hangman_words import word_list
 
-chosen_word = random.choice(hangman_words.word_list)
+chosen_word = random.choice(word_list)
 word_length = len(chosen_word)
 
 display_list = []
@@ -26,7 +27,7 @@ display_list = []
 for _ in range(word_length):
     display_list += "_"
 
-print(hangman_art.logo)
+print(logo)
 print(chosen_word)
 
 end_of_game = False
@@ -35,16 +36,22 @@ lives = 6
 while not end_of_game:
     guess = input("Guess a letter: ").lower()
 
+    os.system("clear")
+
+    if guess in display_list:
+        print(f"You've already guessed {guess}.")
+
     for position in range(word_length):
         letter = chosen_word[position]
         if letter == guess:
             display_list[position] = letter
 
     if guess not in chosen_word:
+        print(f"{guess} is not in the word. You lose a life.")
         lives -= 1
 
     print(f"{' '.join(display_list)}")
-    print(hangman_art.stages[lives])
+    print(stages[lives])
 
     if "_" not in display_list:
         end_of_game = True
