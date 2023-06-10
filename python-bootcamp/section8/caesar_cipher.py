@@ -14,13 +14,24 @@ def encrypt(plain_text, shift_amount):
     for letter in plain_text:
         index = alphabet.index(letter)
         chipher_index = index + shift_amount
-        if (chipher_index >= length_of_alphabel):
-            chipher_index = chipher_index - length_of_alphabel
+        if chipher_index >= length_of_alphabel:
+            chipher_index -= length_of_alphabel
 
-        cipher_letter = alphabet[chipher_index]
-        cipher_text += cipher_letter
+        cipher_text += alphabet[chipher_index]
 
     print(cipher_text)
 
+def decrypt(cipher_text, shift_amount):
+    plain_text = ""
 
-encrypt(plain_text=text, shift_amount=shift)
+    for letter in cipher_text:
+        index = alphabet.index(letter)
+        plain_index = index - shift_amount
+        plain_text += alphabet[plain_index]
+    
+    print(plain_text)
+
+if direction == "encode":
+    encrypt(plain_text=text, shift_amount=shift)
+elif direction == "decode":
+    decrypt(cipher_text=text, shift_amount=shift)
