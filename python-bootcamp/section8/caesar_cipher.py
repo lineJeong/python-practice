@@ -7,31 +7,66 @@ direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
 text = input("Type your message:\n").lower()
 shift = int(input("Type the shift number:\n"))
 
-def encrypt(plain_text, shift_amount):
-    length_of_alphabel = len(alphabet)
-    cipher_text = ""
+def caesar(cipher_direction, start_text, shift_amount):
+    end_text = ""
 
-    for letter in plain_text:
-        index = alphabet.index(letter)
-        chipher_index = index + shift_amount
-        if chipher_index >= length_of_alphabel:
-            chipher_index -= length_of_alphabel
+    if cipher_direction == "decode":
+        shift_amount *= -1
 
-        cipher_text += alphabet[chipher_index]
+    for letter in start_text:
+        position = alphabet.index(letter)
+        new_position = position + shift_amount
+        length_of_alphabet = len(alphabet)
+        if new_position >= length_of_alphabet: # encode에서만 해당 조건 발생
+            new_position -= length_of_alphabet
 
-    print(cipher_text)
+        end_text += alphabet[new_position]
 
-def decrypt(cipher_text, shift_amount):
-    plain_text = ""
+    print(f"The {cipher_direction}d text is {end_text}")
 
-    for letter in cipher_text:
-        index = alphabet.index(letter)
-        plain_index = index - shift_amount
-        plain_text += alphabet[plain_index]
+caesar(cipher_direction=direction, start_text=text, shift_amount=shift)
+
+# def caesar(cipher_direction, start_text, shift_amount):
+#     end_text = ""
+
+#     for letter in start_text:
+#         position = alphabet.index(letter)
+#         new_position = position - shift_amount
+#         if(cipher_direction == "encode"):
+#             new_position = position + shift_amount
+#             length_of_alphabet = len(alphabet)
+#             if new_position >= length_of_alphabet:
+#                 new_position -= length_of_alphabet
+
+#         end_text += alphabet[new_position]
+
+#     print(end_text)
+
+# def encrypt(plain_text, shift_amount):
+#     length_of_alphabet = len(alphabet)
+#     cipher_text = ""
+
+#     for letter in plain_text:
+#         index = alphabet.index(letter)
+#         chipher_index = index + shift_amount
+#         if chipher_index >= length_of_alphabet:
+#             chipher_index -= length_of_alphabet
+
+#         cipher_text += alphabet[chipher_index]
+
+#     print(cipher_text)
+
+# def decrypt(cipher_text, shift_amount):
+#     plain_text = ""
+
+#     for letter in cipher_text:
+#         index = alphabet.index(letter)
+#         plain_index = index - shift_amount
+#         plain_text += alphabet[plain_index]
     
-    print(plain_text)
+#     print(plain_text)
 
-if direction == "encode":
-    encrypt(plain_text=text, shift_amount=shift)
-elif direction == "decode":
-    decrypt(cipher_text=text, shift_amount=shift)
+# if direction == "encode":
+#     encrypt(plain_text=text, shift_amount=shift)
+# elif direction == "decode":
+#     decrypt(cipher_text=text, shift_amount=shift)
