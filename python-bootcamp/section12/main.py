@@ -1,14 +1,14 @@
 # Scope
-enemies = 1
+# enemies = 1
 
 
-def increase_enemies():
-    enemies = 2
-    print(f"enemies inside function: {enemies}")  # 2
+# def increase_enemies():
+#     enemies = 2
+#     print(f"enemies inside function: {enemies}")  # 2
 
 
-increase_enemies()
-print(f"enemies outside function: {enemies}")  # 1
+# increase_enemies()
+# print(f"enemies outside function: {enemies}")  # 1
 
 
 # Local Scope
@@ -35,6 +35,7 @@ def game():
 game()
 print(player_health)
 
+
 # There is no Block Scope
 # 둘러싼 함수와 같은 스코프를 가짐, 둘러싼 함수가 없으면 전역 스코프를 가짐
 
@@ -49,3 +50,32 @@ if game_level < 5:
     new_enemy = enemies[0]
 
 print(new_enemy)
+
+
+# Modifying Global Scope
+enemies = 1
+
+
+def increase_enemies():
+    # global enemies
+    print(f"enemies inside function: {enemies}")  # 2
+    return enemies + 1
+
+
+enemies = increase_enemies()
+print(f"enemies outside function: {enemies}")  # 1
+
+
+# Modifying Local Scope Test
+def test_outter():
+    local_test = 1
+
+    def test_inner():
+        # nonlocal local_test
+        print(f"local_test : {local_test}")
+        return local_test + 1
+    local_test = test_inner()
+    print(f"outter_test : {local_test}")
+
+
+test_outter()
