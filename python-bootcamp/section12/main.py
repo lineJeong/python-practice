@@ -84,3 +84,11 @@ test_outter()
 # Global Constants
 PI = 3.14159
 URL = "https://www.google.com"
+
+
+def global_constant():
+    return PI - 1
+
+
+print(global_constant())
+print(PI)
