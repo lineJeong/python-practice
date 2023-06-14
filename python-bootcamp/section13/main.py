@@ -1,5 +1,5 @@
 ############ DEBUGGING############
-from random import randint
+# from random import randint
 
 # # 1. Describe Problem
 
@@ -16,13 +16,13 @@ from random import randint
 # # Fix
 
 
-def my_function():
-    for i in range(1, 21):
-        if i == 20:
-            print("You got it")
+# def my_function():
+#     for i in range(1, 21):
+#         if i == 20:
+#             print("You got it")
 
 
-my_function()
+# my_function()
 
 
 # # 2. Reproduce the Bug
@@ -32,9 +32,9 @@ my_function()
 
 
 # # Fix
-dice_imgs = ["❶", "❷", "❸", "❹", "❺", "❻"]
-dice_num = randint(0, 5)
-print(dice_imgs[dice_num])
+# dice_imgs = ["❶", "❷", "❸", "❹", "❺", "❻"]
+# dice_num = randint(0, 5)
+# print(dice_imgs[dice_num])
 
 
 # # 3. Play Computer
@@ -46,11 +46,11 @@ print(dice_imgs[dice_num])
 
 
 # # Fix
-year = int(input("What's your year of birth? "))
-if year > 1980 and year < 1994:
-    print("You are a millenial.")
-elif year >= 1994:
-    print("You are a Gen Z.")
+# year = int(input("What's your year of birth? "))
+# if year > 1980 and year < 1994:
+#     print("You are a millenial.")
+# elif year >= 1994:
+#     print("You are a Gen Z.")
 
 
 # # 4. Fix the Errors
@@ -60,6 +60,26 @@ elif year >= 1994:
 
 
 # # Fix
-age = int(input("How old are you? "))
-if age > 18:
-    print(f"You can drive at age {age}.")
+# age = int(input("How old are you? "))
+# if age > 18:
+#     print(f"You can drive at age {age}.")
+
+
+# # 5. Print is Your Friend
+# pages = 0
+# word_per_page = 0
+# pages = int(input("Number of pages: "))
+# word_per_page == int(input("Number of words per page: "))
+# total_words = pages * word_per_page
+# print(total_words)
+
+
+# # Fix
+pages = 0
+word_per_page = 0
+pages = int(input("Number of pages: "))
+word_per_page = int(input("Number of words per page: "))
+print(f"pages = {pages}")
+print(f"word_per_page = {word_per_page }")
+total_words = pages * word_per_page
+print(total_words)
