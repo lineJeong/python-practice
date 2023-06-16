@@ -3,16 +3,20 @@
 # 3. Turn the problem into comments
 # 4. Write code -> Run code -> Fix code
 
-from random import randint
+import random
+import os
 from art import logo, vs
 from data import data
 
 # data 랜덤 추출
 
 
-def pick_item():
-    random_idex = randint(0, len(data) - 1)
-    return data[random_idex]
+def pick_random_item():
+    return random.choice(data)
+
+
+def get_item_info(item):
+    return f"{item['name']}, {item['description']}, from {item['country']}"
 
 # A, B의 팔로워 수 비교
 # 유저의 선택에 따라 결과 분기
@@ -21,19 +25,50 @@ def pick_item():
 # 정답을 맞추지 못하면 종료
 
 
+def check_guess(guess, a_follower, b_follower):
+    if a_follower > b_follower:
+        return guess == "a"
+    else:
+        return guess == "b"
+
+
 def play_game():
     print(logo)
 
-    item_A = pick_item()
-    item_B = pick_item()
+    score = 0
+    is_game_over = False
 
-    # print(f"You're right! Current score: {}") # 최소 1개 이상 맞췄을 때부터 띄워줌
-    print(
-        f"Compare A: {item_A['name']}, {item_A['description']}, from {item_A['country']}")
-    print(vs)
-    print(
-        f"Compare B: {item_B['name']}, {item_B['description']}, from {item_B['country']}")
-    # input("who has more followers? Type 'A' of 'B': ")
+    item_a = pick_random_item()
+    item_b = pick_random_item()
+
+    while not is_game_over:
+        item_a = item_b
+        item_b = pick_random_item()
+
+        while item_a == item_b:
+            item_a = pick_random_item()
+
+        # print(f"You're right! Current score: {}") # 최소 1개 이상 맞췄을 때부터 띄워줌
+
+        print(
+            f"Compare A: {get_item_info(item_a)}")
+        print(vs)
+        print(
+            f"Compare B: {get_item_info(item_b)}")
+
+        guess = input("Who has more followers? Type 'A' or 'B': ").lower()
+        is_correct = check_guess(
+            guess, item_a["follower_count"], item_b["follower_count"])
+
+        os.system('clear')
+        print(logo)
+
+        if is_correct:
+            score += 1
+            print(f"You're right! Current score: {score}.")
+        else:
+            is_game_over = True
+            print(f"Sorry, that's wrong. Final score: {score}")
 
 
 play_game()
