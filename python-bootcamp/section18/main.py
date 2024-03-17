@@ -3,6 +3,7 @@ import random
 
 tim = t.Turtle()
 t.colormode(255)
+tim.speed("fastest")
 
 
 def random_color():
@@ -12,14 +13,31 @@ def random_color():
     return (r, g, b)
 
 
-directions = [0, 90, 180, 270]
-tim.pensize(15)
-tim.speed("fastest")
+def draw_spirograph(size_of_gap):
+    for _ in range(int(360 / size_of_gap)):
+        tim.color(random_color())
+        tim.circle(100)
+        tim.setheading(tim.heading() + size_of_gap)
 
-for _ in range(200):
-    tim.color(random_color())
-    tim.forward(30)
-    tim.setheading(random.choice(directions))
+
+draw_spirograph(5)
+
+# GAP = 5
+# while GAP <= 360:
+#     tim.color(random_color())
+#     tim.circle(100)
+#     tim.setheading(GAP)
+#     GAP += 5
+
+
+# directions = [0, 90, 180, 270]
+# tim.pensize(15)
+# tim.speed("fastest")
+
+# for _ in range(200):
+#     tim.color(random_color())
+#     tim.forward(30)
+#     tim.setheading(random.choice(directions))
 
 # colors = [
 #     "aquamarine",
