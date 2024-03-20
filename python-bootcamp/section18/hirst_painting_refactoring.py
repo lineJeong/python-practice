@@ -1,16 +1,3 @@
-# import colorgram
-
-# def set_rgb_list():
-#     colors = colorgram.extract("materials/spot-painting.jpg", 30)
-#     rgb_list = []
-#     for color in colors:
-#         rgb = color.rgb
-#         rgb_list.append((rgb.r, rgb.g, rgb.b))
-#     return rgb_list
-
-
-# print(set_rgb_list())
-
 import turtle as t
 import random
 
@@ -52,23 +39,25 @@ tim.penup()
 tim.setposition(-225, -225)
 
 
-def draw_dots():
-    number_of_dots = 100
-    x_pos = tim.xcor()
+def set_y_axis():
     y_pos = tim.ycor()
+    for _ in range(10):
+        set_x_axis()
+        y_pos += 50
+        tim.sety(y_pos)
 
-    for dot_count in range(1, number_of_dots + 1):
+
+def set_x_axis():
+    x_pos = tim.xcor()
+    for _ in range(10):
         tim.dot(20, random.choice(color_list))
         x_pos += 50
         tim.setx(x_pos)
-        if dot_count % 10 == 0:
-            x_pos = -225
-            tim.setx(x_pos)
-            y_pos += 50
-            tim.sety(y_pos)
+    x_pos = -225
+    tim.setx(x_pos)
 
 
-draw_dots()
+set_y_axis()
 
 screen = t.Screen()
 screen.exitonclick()
